@@ -18,7 +18,7 @@ import com.libertymutual.goforcode.todolist.models.ToDoItem;
 public class ToDoItemRepository {
 
 	private int nextId = 1;
-
+	private int listSize; 
 	/**
 	 * Get all the items from the file.
 	 * 
@@ -54,7 +54,13 @@ public class ToDoItemRepository {
 				// items.add(newItem);
 
 			}
+			
 
+			listSize = items.size();
+			
+			
+
+			
 			// in the same for loop
 			// create a to do item
 			// set the to do item properties
@@ -72,6 +78,8 @@ public class ToDoItemRepository {
 		}
 
 		// Replace this with something meaningful
+		
+		
 		return items;
 
 		// return Collections.emptyList();
@@ -86,9 +94,20 @@ public class ToDoItemRepository {
 	public void create(ToDoItem item) {
 		// Fill this in with something meaningful
 
-		item.setId(nextId);
-		nextId++;
-
+		//get the size of the list
+		
+		if(listSize != 0 ) {
+			item.setId(listSize + 1);
+		}
+		else if(listSize == 0) {
+			item.setId(1);
+		}
+	
+/*		else {
+			item.setId(nextId);
+			nextId++;			
+		}*/
+		
 		String file = "to-do-list.csv";
 
 		CSVFormat format = CSVFormat.DEFAULT.withHeader();
